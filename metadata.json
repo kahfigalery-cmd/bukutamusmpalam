@@ -1,0 +1,6 @@
+{
+  "name": "Buku Tamu Digital SMP Alam Excellentia Pamekasan",
+  "description": "Sistem Buku Tamu Digital Resmi SMP Alam Excellentia Pamekasan untuk pencatatan kunjungan, pemantauan jam tamu, buku tamu khusus kegiatan, dashboard statistik, dan laporan cetak resmi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
