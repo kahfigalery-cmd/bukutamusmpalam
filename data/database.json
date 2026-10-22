@@ -137,9 +137,40 @@
       "total_visits": 1,
       "last_visit_at": "2026-10-22",
       "created_at": "2026-10-22T09:24:45.118Z"
+    },
+    {
+      "id": "vis_1792663259569",
+      "name": "H. Syafiuddin, M.Si",
+      "institution": "Kantor Kemenag Pamekasan",
+      "phone": "081233445566",
+      "total_visits": 1,
+      "last_visit_at": "2026-10-22",
+      "created_at": "2026-10-22T10:00:59.569Z"
     }
   ],
   "visits": [
+    {
+      "id": "v_1792663259569_tnmy",
+      "visit_number": "EXC-20261022-007",
+      "date": "2026-10-22",
+      "check_in_time": "17:00",
+      "check_out_time": null,
+      "duration_minutes": null,
+      "status": "active",
+      "guest_name": "H. Syafiuddin, M.Si",
+      "institution": "Kantor Kemenag Pamekasan",
+      "phone": "081233445566",
+      "category": "Tamu dinas atau instansi pemerintah",
+      "purpose": "Bertemu kepala sekolah",
+      "purpose_detail": "Koordinasi asesmen madrasah dan kurikulum alam",
+      "person_to_meet": "Kepala Sekolah",
+      "identity_number": "",
+      "notes": "",
+      "signature": null,
+      "event_id": null,
+      "created_at": "2026-10-22T10:00:59.569Z",
+      "updated_at": "2026-10-22T10:00:59.569Z"
+    },
     {
       "id": "v_1792661085118_2hh3",
       "visit_number": "EXC-20261022-006",
@@ -340,6 +371,14 @@
     }
   ],
   "activity_logs": [
+    {
+      "id": "log_1792663259570_f1fx",
+      "user_name": "Pengunjung Mandiri / Resepsionis",
+      "user_role": "public",
+      "action": "Kunjungan Baru Dicatat",
+      "details": "Tamu H. Syafiuddin, M.Si (Kantor Kemenag Pamekasan) terdaftar dengan No: EXC-20261022-007",
+      "timestamp": "2026-10-22T10:00:59.570Z"
+    },
     {
       "id": "log_1792661089413_zr54",
       "user_name": "Siti Nur Aisyah",

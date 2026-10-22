@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 
 // Database file path
 const DATA_DIR = path.join(__dirname, 'data');
@@ -613,21 +614,35 @@ app.post('/api/visits', (req, res) => {
     event_id,
   } = req.body;
 
-  if (!guest_name || !institution || !phone || !category || !purpose || !person_to_meet) {
+  if (!guest_name || !String(guest_name).trim() ||
+      !institution || !String(institution).trim() ||
+      !phone || !String(phone).trim() ||
+      !category || !purpose || !person_to_meet) {
     return res.status(400).json({
       success: false,
-      message: 'Mohon lengkapi seluruh data wajib (Nama, Instansi, No HP, Kategori, Tujuan, Pihak yang Ditemui).',
+      message: 'Mohon lengkapi seluruh data wajib: Nama Lengkap, Asal Instansi, Nomor WhatsApp/HP, Kategori, Tujuan Kunjungan, dan Pihak yang Ingin Ditemui.',
     });
   }
 
   const db = readDB();
   const { dateStr, timeStr } = getJakartaDate();
 
-  // Generate sequential unique visit number for the day
-  const todayVisits = (db.visits || []).filter((v: any) => v.date === dateStr);
-  const sequence = todayVisits.length + 1;
-  const visitNumber = `EXC-${dateStr.replace(/-/g, '')}-${String(sequence).padStart(3, '0')}`;
-  const visitId = `v_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`;
+  // Generate guaranteed unique sequential visit number for the day
+  const todayPrefix = `EXC-${dateStr.replace(/-/g, '')}-`;
+  let maxSeq = 0;
+  (db.visits || []).forEach((v: any) => {
+    if (v.visit_number && v.visit_number.startsWith(todayPrefix)) {
+      const parts = v.visit_number.split('-');
+      const num = parseInt(parts[parts.length - 1], 10);
+      if (!isNaN(num) && num > maxSeq) {
+        maxSeq = num;
+      }
+    }
+  });
+
+  const sequence = maxSeq + 1;
+  const visitNumber = `${todayPrefix}${String(sequence).padStart(3, '0')}`;
+  const visitId = `v_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
 
   const newVisit = {
     id: visitId,
